@@ -3,6 +3,7 @@ const tabla = document.getElementById('tabla');
 let borrar = document.querySelectorAll('.btnBorrar');
 let id = 0;
 
+
 //trae el Array del local storage || o crea uno vacio
 let arrayTareas = JSON.parse(localStorage.getItem('tareas')) || [];
 
@@ -16,8 +17,8 @@ function renderizarTareas() {
   for(let item of arrayTareas){
     html += `
     <tr>
-      <td>${item.tarea}</td>
-      <td>${item.estado}</td>
+      <td class="tarea">${item.tarea}</td>
+      <td class="estado">${item.estado}</td>
       <td>
         <button id="${item.id}" class="btnBorrar">X</button>
       </td>
@@ -70,12 +71,10 @@ function asignarEventosBorrar() {
 }
 
 renderizarTareas();//Renderizacion Inicial
+console.log(borrar);
 
 //Evento agregar tarea.
 const btnAdd = document.getElementById('btnAgregar');
 btnAdd.addEventListener('click', () => {
   agregarTarea(input.value);
 });
-
-
-

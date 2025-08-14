@@ -1,0 +1,55 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.titulo {
+  padding: 10px;
+}
+
+.boxEntrada {
+  width: 80%;
+  display: flex;
+  justify-content: flex-start;
+  gap: 10px;
+}
+
+input {
+  width: 60%;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.btnAdd {
+  border: 1px solid royalblue;
+  border-radius: 5px;
+  padding: 5px 15px;
+  background-color: royalblue;
+  color: white;
+}
+
+table {
+  width: 80%;
+  padding: 20px 0;
+}
+
+.tarea, .estado {
+  border-bottom: 1px solid gray;
+}
+
+.btnBorrar {
+  border: 1px solid red;
+  border-radius: 5px;
+  padding: 5px 10px;
+  background-color: red;
+  color: white;
+}
