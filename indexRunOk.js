@@ -26,7 +26,6 @@ function renderizarTareas() {
   };
   tabla.innerHTML = html;  
   input.value = "";
-  
   //asigna escuchador eventos a botones borrar renderizados  
   asignarEventosBorrar();
 };
@@ -77,9 +76,5 @@ console.log(borrar);
 //Evento agregar tarea.
 const btnAdd = document.getElementById('btnAgregar');
 btnAdd.addEventListener('click', () => {
-  if(input.value == ""){
-    alert("Debes escribir una Tarea");
-  } else {
-    agregarTarea(input.value);
-  };
+  agregarTarea(input.value);
 });
