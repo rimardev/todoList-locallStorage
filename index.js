@@ -3,7 +3,6 @@ const tabla = document.getElementById('tabla');
 let borrar = document.querySelectorAll('.btnBorrar');
 let id = 0;
 
-
 //trae el Array del local storage || o crea uno vacio
 let arrayTareas = JSON.parse(localStorage.getItem('tareas')) || [];
 
@@ -15,18 +14,20 @@ function almacenarTareas(arrayTareas) {
 function renderizarTareas() {
   let html = "";
   for(let item of arrayTareas){
+    let state = "checked"
     html += `
     <tr>
       <td class="tarea">${item.tarea}</td>
-      <td class="estado">${item.estado}</td>
+      <td class="estado">
+        <input type="checkbox" class="checkbox" ${state}>         
+      </td>
       <td>
-        <button id="${item.id}" class="btnBorrar">X</button>
+        <button id="${item.id}" class="btnBorrar">x</button>
       </td>
     </tr>`    
   };
   tabla.innerHTML = html;  
-  input.value = "";
-  
+  input.value = "";  
   //asigna escuchador eventos a botones borrar renderizados  
   asignarEventosBorrar();
 };
@@ -50,13 +51,10 @@ function agregarTarea(dataTarea) {
 };
 
 function eliminarTarea(id) {
-  console.log(id);
   let index = arrayTareas.findIndex(item => item.id == id);
-  console.log(index);
   if (index !== -1) {
     arrayTareas.splice(index, 1);
-  }
-  console.log(arrayTareas);
+  };
   almacenarTareas(arrayTareas);
 };
 
@@ -65,14 +63,12 @@ function asignarEventosBorrar() {
   borrar.forEach(boton => {
     //evento borrar tarea.
     boton.addEventListener('click', () => {
-      console.log("click en " + boton.id);
       eliminarTarea(boton.id);
     });  
   });  
-}
+};
 
 renderizarTareas();//Renderizacion Inicial
-console.log(borrar);
 
 //Evento agregar tarea.
 const btnAdd = document.getElementById('btnAgregar');
