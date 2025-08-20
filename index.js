@@ -1,9 +1,11 @@
 const input = document.getElementById('entradaTarea');
 const tabla = document.getElementById('tabla');
+let cambiar = document.querySelectorAll('.checkBox');
 let borrar = document.querySelectorAll('.btnBorrar');
 let id = 0;
 
-//trae el Array del local storage || o crea uno vacio
+
+//Trae Array de local storage || o Crea uno vacio
 let arrayTareas = JSON.parse(localStorage.getItem('tareas')) || [];
 
 function almacenarTareas(arrayTareas) {
@@ -14,12 +16,19 @@ function almacenarTareas(arrayTareas) {
 function renderizarTareas() {
   let html = "";
   for(let item of arrayTareas){
-    let state = "checked"
+
+    //Determina estado del Checkbox-------
+    let state = ""
+    if(item.estado == true){
+      state = "checked";
+    };
+    //------------------------------------
+
     html += `
     <tr>
       <td class="tarea">${item.tarea}</td>
       <td class="estado">
-        <input type="checkbox" class="checkbox" ${state}>         
+        <input type="checkbox" id="${item.id}" class="checkBox" ${state}>         
       </td>
       <td>
         <button id="${item.id}" class="btnBorrar">x</button>
@@ -28,8 +37,9 @@ function renderizarTareas() {
   };
   tabla.innerHTML = html;  
   input.value = "";  
-  //asigna escuchador eventos a botones borrar renderizados  
-  asignarEventosBorrar();
+
+  //asigna escuchador EVENTOS.s  
+  asignarEventos();  
 };
 
 function agregarTarea(dataTarea) {
@@ -39,15 +49,25 @@ function agregarTarea(dataTarea) {
   } else {
   id = arrayTareas[0].id + 1;
   }
+
   //crea Objeto tarea para guardar.
   let data = {
     id: id,
     tarea: dataTarea,
     estado: false
   };
+  
   //agrega Objeto tarea al array.
   arrayTareas.unshift(data);
   almacenarTareas(arrayTareas)
+};
+
+function cambiarEstado(id) {
+  let index = arrayTareas.findIndex(item => item.id == id);
+  if(index !== -1) {
+    arrayTareas[index].estado = !arrayTareas[index].estado;
+  };
+  almacenarTareas(arrayTareas);  
 };
 
 function eliminarTarea(id) {
@@ -58,19 +78,28 @@ function eliminarTarea(id) {
   almacenarTareas(arrayTareas);
 };
 
-function asignarEventosBorrar() {
+function asignarEventos() {
+  //Asigna EVENTOS Borrar Tarea.
   borrar = document.querySelectorAll('.btnBorrar');
   borrar.forEach(boton => {
-    //evento borrar tarea.
     boton.addEventListener('click', () => {
       eliminarTarea(boton.id);
     });  
-  });  
+  });
+  
+  //Asigna EVENTOS Cambiar Estado.
+  cambiar = document.querySelectorAll('.checkBox');
+  cambiar.forEach(check => {      
+    check.addEventListener('change', () => {
+      cambiarEstado(check.id);      
+    });  
+  });
 };
 
-renderizarTareas();//Renderizacion Inicial
+//Renderizacion Inicial.
+renderizarTareas();
 
-//Evento agregar tarea.
+//Evento Agregar Tarea.
 const btnAdd = document.getElementById('btnAgregar');
 btnAdd.addEventListener('click', () => {
   if(input.value == ""){
@@ -79,3 +108,4 @@ btnAdd.addEventListener('click', () => {
     agregarTarea(input.value);
   };
 });
+
