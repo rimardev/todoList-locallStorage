@@ -29,4 +29,10 @@ todo-list/
 - JavaScript (ES6+)
 - LocalStorage para persistencia de datos
 
+## Próximas mejoras (ideas)
+- Editar tareas existentes
+- Agregar fechas límite
+- Filtro de tareas (todas, completadas, pendientes)
+- Modo oscuro
+
 
