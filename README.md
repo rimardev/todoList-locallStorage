@@ -21,8 +21,7 @@ todo-list/
 ```
 
 ## Vista previa
-
-https://github.com/rimardev/todoList-locallStorage/blob/main/screenshot.png 
+![Todo List Preview](./screenshot.png)
 
 ## Tecnologías utilizadas
 - HTML5
