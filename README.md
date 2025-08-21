@@ -22,7 +22,7 @@ todo-list/
 
 ## Vista previa
 
-(Coloca aquí una captura de pantalla de tu aplicación funcionando)  
+https://github.com/rimardev/todoList-locallStorage/blob/main/screenshot.png 
 
 ## Tecnologías utilizadas
 - HTML5
