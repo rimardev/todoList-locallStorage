@@ -21,7 +21,7 @@ todo-list/
 ```
 
 ## Vista previa
-![Todo List Preview](./screenshot.png)
+
 
 ## Tecnologías utilizadas
 - HTML5
